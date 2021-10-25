@@ -25,3 +25,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::apiResource('users', \App\Http\Controllers\UserController::class);
+Route::apiResource(
+    'users.payments',
+    \App\Http\Controllers\UserPaymentController::class
+)->only(['index', 'show']);

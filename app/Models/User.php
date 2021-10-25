@@ -16,6 +16,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $phone_number Phone number
  * @property \DateTime|string $birthdate Birth date
  * @property string $password Password field
+ *
+ * @property-read Payment[] $payments Related user payments
  */
 class User extends Authenticatable
 {
@@ -54,4 +56,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Payments of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'user_from_id', 'id');
+    }
 }
