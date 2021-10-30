@@ -111,8 +111,8 @@ class UserController extends Controller
         $user->phone_number = $request->input('phone_number');
         $user->birthdate = $request->input('birthdate');
 
-        if ($request->has('password')) {
-            $user->password = $request->input('password');
+        if ($request->has('password') && $password = $request->input('password') !== null) {
+            $user->password = $password;
         }
 
         $result = $user->updateOrFail();

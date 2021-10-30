@@ -21,7 +21,7 @@ class UserPaymentController extends Controller
      */
     public function index(User $user)
     {
-        return response()->json($user->payments);
+        return response()->json($user->payments()->with('user_from')->get());
     }
 
     /**
@@ -47,7 +47,7 @@ class UserPaymentController extends Controller
     {
         return response()->json([
             'user' => $user,
-            'payment' => $payment,
+            'payment' => $payment->load('user_from'),
         ]);
     }
 

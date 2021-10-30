@@ -65,11 +65,14 @@ class PaymentsTableSeeder extends Seeder
             $coinbaseDummyBTCPayment->comment = 'another one dummy BTC payment';
             $coinbaseDummyBTCPayment->user_from_id = $someUser->getKey();
             $coinbaseDummyBTCPayment->status = 'done';
-            $coinbaseDummyBTCPayment->amount = Money::parseByDecimal((string)rand(1, 20), 'BTC')->formatByDecimal();
+            $coinbaseDummyBTCPayment->amount = Money::parseByDecimal(
+                '0.' . str_pad((string)rand(1, 20), 8, '0', STR_PAD_LEFT), 'BTC'
+            )->formatByDecimal();
             $coinbaseDummyBTCPayment->currency = 'BTC';
             $coinbaseDummyBTCPayment->target_type = 'coinbase';
             $coinbaseDummyBTCPayment->target = [
                 'wallet_address' => 'dummy_bitcoin_wallet_address',
+                'wallet_currency' => 'bitcoin',
                 'coinbase_charge_code' => 'some_charge_code', // optional
                 'coinbase_charge_uuid' => 'some_charge_uuid', // optional
                 'coinbase_checkout_uuid' => 'some_checkout_uuid', // optional
@@ -83,11 +86,14 @@ class PaymentsTableSeeder extends Seeder
             $coinbaseDummyDOGEPayment->comment = 'another one dummy DOGE payment';
             $coinbaseDummyDOGEPayment->user_from_id = $someUser->getKey();
             $coinbaseDummyDOGEPayment->status = 'done';
-            $coinbaseDummyDOGEPayment->amount = Money::parseByDecimal((string)rand(1000, 30000), 'DOGE')->formatByDecimal();
+            $coinbaseDummyDOGEPayment->amount = Money::parseByDecimal(
+                '0.' . str_pad((string)rand(1000, 30000), 8, '0', STR_PAD_LEFT), 'DOGE'
+            )->formatByDecimal();
             $coinbaseDummyDOGEPayment->currency = 'DOGE';
             $coinbaseDummyDOGEPayment->target_type = 'coinbase';
             $coinbaseDummyDOGEPayment->target = [
                 'wallet_address' => 'dummy_dogecoin_wallet_address',
+                'wallet_currency' => 'dogecoin',
                 'coinbase_charge_code' => 'some_charge_code', // optional
                 'coinbase_charge_uuid' => 'some_charge_uuid', // optional
                 'coinbase_checkout_uuid' => 'some_checkout_uuid', // optional
