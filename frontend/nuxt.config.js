@@ -7,6 +7,10 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
 
+  publicRuntimeConfig: {
+    testCheckoutId: process.env.TEST_CHECKOUT_ID
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - frontend',

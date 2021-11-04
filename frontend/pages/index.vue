@@ -10,11 +10,10 @@
         </v-card-text>
         <v-card-text>
           <!-- Next div is embed code from concrete coinbase checkout -->
-          <!-- NOTE: this div inserted here only for testing and such embeds SHOULD NOT be used in code -->
           <div>
             <a class="buy-with-crypto"
                :data-custom="dataCustom"
-               href="https://commerce.coinbase.com/checkout/f21d1bac-9c2d-4052-95e2-322b039a7bb1">
+               :href="testCheckoutLink">
               Test buy with Crypto
             </a>
             <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
@@ -25,7 +24,8 @@
           <v-spacer />
           <v-btn
             color="primary"
-            to="https://github.com/reenekt/pet-project-user-payments-coinbase"
+            href="https://github.com/reenekt/pet-project-user-payments-coinbase"
+            target="_blank"
           >
             Github repo
           </v-btn>
@@ -40,8 +40,12 @@ import Vue from 'vue'
 
 export default Vue.extend({
   computed: {
+    testCheckoutLink() {
+      const checkoutId = this.$config.testCheckoutId
+      return 'https://commerce.coinbase.com/checkout/' + checkoutId
+    },
     dataCustom() {
-      return `{"user_id":${this.$auth.user!.id}`
+      return `{"user_id":${this.$auth.user!.id}}`
     },
   },
 })
