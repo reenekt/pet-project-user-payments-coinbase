@@ -23,7 +23,7 @@ class CoinbaseController extends Controller
         // Payment done
         if ($eventType === 'charge:confirmed') {
             $payment = new Payment();
-            $payment->user_from_id = $event->metadata->user_id;
+            $payment->user_from_id = json_decode($event['metadata']['custom'], true)['user_id'];
             $payment->status = 'done';
             $payment->amount = '0'; // SUM of $event->payments in one "selected" currency (see next line)
             $payment->currency = 'BTC'; // all should be converted to BTC (or another currency like USD, but BTC recommended)
